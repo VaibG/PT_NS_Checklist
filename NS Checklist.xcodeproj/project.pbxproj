@@ -107,9 +107,9 @@
 		8034AC161EA0CA7B00BA0F69 = {
 			isa = PBXGroup;
 			children = (
-				8034AC211EA0CA7B00BA0F69 /* BMT Checklist */,
-				8034AC391EA0CA7B00BA0F69 /* BMT ListTests */,
-				8034AC441EA0CA7B00BA0F69 /* BMT ListUITests */,
+				8034AC211EA0CA7B00BA0F69 /* NS Checklist */,
+				8034AC391EA0CA7B00BA0F69 /* NS ChecklistTests */,
+				8034AC441EA0CA7B00BA0F69 /* NS ChecklistUITests */,
 				8034AC201EA0CA7B00BA0F69 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -124,7 +124,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8034AC211EA0CA7B00BA0F69 /* BMT Checklist */ = {
+		8034AC211EA0CA7B00BA0F69 /* NS Checklist */ = {
 			isa = PBXGroup;
 			children = (
 				802B56341EC2E27100418F9A /* Controllers */,
@@ -136,25 +136,27 @@
 				8034AC291EA0CA7B00BA0F69 /* BMT_List.xcdatamodeld */,
 				8034AC531EA0D27000BA0F69 /* Minecraft Evenings.otf */,
 			);
-			name = "BMT Checklist";
-			path = "BMT List";
-			sourceTree = "<group>";
+			name = "NS Checklist";
+			path = "/Users/Vaibhav/Documents/Xcode/BMT List/BMT List";
+			sourceTree = "<absolute>";
 		};
-		8034AC391EA0CA7B00BA0F69 /* BMT ListTests */ = {
+		8034AC391EA0CA7B00BA0F69 /* NS ChecklistTests */ = {
 			isa = PBXGroup;
 			children = (
 				8034AC3A1EA0CA7B00BA0F69 /* BMT_ListTests.swift */,
 				8034AC3C1EA0CA7B00BA0F69 /* Info.plist */,
 			);
+			name = "NS ChecklistTests";
 			path = "BMT ListTests";
 			sourceTree = "<group>";
 		};
-		8034AC441EA0CA7B00BA0F69 /* BMT ListUITests */ = {
+		8034AC441EA0CA7B00BA0F69 /* NS ChecklistUITests */ = {
 			isa = PBXGroup;
 			children = (
 				8034AC451EA0CA7B00BA0F69 /* BMT_ListUITests.swift */,
 				8034AC471EA0CA7B00BA0F69 /* Info.plist */,
 			);
+			name = "NS ChecklistUITests";
 			path = "BMT ListUITests";
 			sourceTree = "<group>";
 		};
@@ -248,8 +250,13 @@
 				TargetAttributes = {
 					8034AC1E1EA0CA7B00BA0F69 = {
 						CreatedOnToolsVersion = 8.2;
-						DevelopmentTeam = AVM79GB4CP;
+						DevelopmentTeam = NZ3GDE8DSF;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
 					};
 					8034AC351EA0CA7B00BA0F69 = {
 						CreatedOnToolsVersion = 8.2;
@@ -478,11 +485,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = AVM79GB4CP;
-				INFOPLIST_FILE = "BMT List/Info.plist";
+				DEVELOPMENT_TEAM = NZ3GDE8DSF;
+				INFOPLIST_FILE = "$(SRCROOT)/BMT List/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "VG.NS-Checklist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.PivotalTech.NSChecklist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -492,11 +499,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = AVM79GB4CP;
-				INFOPLIST_FILE = "BMT List/Info.plist";
+				DEVELOPMENT_TEAM = NZ3GDE8DSF;
+				INFOPLIST_FILE = "$(SRCROOT)/BMT List/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "VG.NS-Checklist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.PivotalTech.NSChecklist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

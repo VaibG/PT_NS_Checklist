@@ -1,6 +1,6 @@
 //
 //  InfoVC.swift
-//  BMT List
+//  NS Checklist
 //
 //  Created by Vaibhav Gattani on 27/5/17.
 //  Copyright © 2017 Vaibhav Gattani. All rights reserved.
@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import CoreData
+import UserNotifications
+
 
 class InfoVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
 
@@ -24,6 +26,7 @@ class InfoVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
     @IBOutlet weak var labelsHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var buttonsHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var reminderPickerHeight: NSLayoutConstraint!
+    @IBOutlet weak var descriptionUpdate: UILabel!
     
     let states = ["15 mins", "30 mins", "45 mins", "1 hour", "2 hours", "3 hours"]
     var text: [NSManagedObject] = []
@@ -38,6 +41,7 @@ class InfoVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
             save(note: "")
         }
         
+        
         if(UIScreen.main.bounds.height < 570)
         {
             datePickerHeight.constant = 100
@@ -45,6 +49,8 @@ class InfoVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
             buttonsHeightConstraint.constant = 96
             reminderPickerHeight.constant = 90
         }
+        descriptionUpdate.text = "Enter your book in timing and camp and when do you want to be reminded so you'll never be late!"
+    
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -188,8 +194,118 @@ class InfoVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
     
     @IBAction func reminderActive(_ sender: Any) {
         
+        if(myBookinTime.currentTitle != "Enter date and time" && myReminderTime.currentTitle != "Set a reminder" && campInfo.text == "") {
+            if(compareDates()) {
+        UNUserNotificationCenter.current().getNotificationSettings {
+         (settings) in
+            if (settings.authorizationStatus == .authorized){
+                self.scheduleNotification()
+                DispatchQueue.main.async {
+                    self.descriptionUpdate.text = "Reminder has been set!"
+                }
+            } else {
+                UNUserNotificationCenter.current().requestAuthorization(options: [.badge,.sound,.alert], completionHandler: { (granted, error) in
+                if let error = error {
+                    print (error)
+                }
+                else {
+                    if (granted){
+                    self.scheduleNotification()
+                    DispatchQueue.main.async {
+                        self.descriptionUpdate.text = "Reminder has been set!"
+                        }
+                        }
+                    }
+                })
+                }
+                }
+            } else{
+             descriptionUpdate.text = "Reminder not set as you have set it for a time that has already passed"
+            }
+        } else {
+            descriptionUpdate.text = "Reminder not set as you have not entered the camp, book in date and when you want your reminder"
+            if(UIScreen.main.bounds.width == 320){
+                descriptionUpdate.font = UIFont(name: "MarkerFelt-Wide", size: 14.0)
+            }
+        }
     }
     
+    func scheduleNotification() {
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Reminder"
+        let remind = "You have to book in at \(campInfo.text!) in \(myReminderTime.currentTitle!)"
+        print(remind)
+        content.body = remind
+        
+        
+        let date: Date = getDateFrom(sender: myDatePicker.date)
+        var components = NSCalendar.current.dateComponents([.minute, .hour, .day, .month, .year], from: date)
+        components.second = 0
+        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+        
+        let identifier = "setReminder"
+        
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request) {
+            (error) in
+            if let error = error {
+                print (error)
+            }
+        }
+
+    }
+    
+    func getDateFrom(sender: Date) -> Date {
+    
+        var components = DateComponents()
+        if (myReminderTime.currentTitle == "15 mins") {
+            components.minute = -15
+            let dateReturned = NSCalendar.current.date(byAdding: components, to: sender)!
+            return dateReturned
+
+        } else if (myReminderTime.currentTitle == "30 mins") {
+            components.minute = -30
+            let dateReturned = NSCalendar.current.date(byAdding: components, to: sender)!
+            return dateReturned
+
+        } else if (myReminderTime.currentTitle == "45 mins") {
+            components.minute = -45
+            let dateReturned = NSCalendar.current.date(byAdding: components, to: sender)!
+            return dateReturned
+
+        } else if (myReminderTime.currentTitle == "1 hour") {
+            components.hour = -1
+            let dateReturned = NSCalendar.current.date(byAdding: components, to: sender)!
+            return dateReturned
+
+        } else if (myReminderTime.currentTitle == "2 hours") {
+            components.hour = -2
+            let dateReturned = NSCalendar.current.date(byAdding: components, to: sender)!
+            return dateReturned
+        } else if (myReminderTime.currentTitle == "3 hours") {
+            components.hour = -3
+            let dateReturned = NSCalendar.current.date(byAdding: components, to: sender)!
+            return dateReturned
+            
+        } else {
+            print("there was a problem")
+            return sender
+        }
+        
+    }
+    
+    func compareDates() -> Bool {
+        
+        let date = getDateFrom(sender: myDatePicker.date)
+        
+        if(date < NSDate() as Date) {
+            return false
+        }
+        
+        return true
+    }
 
     
     

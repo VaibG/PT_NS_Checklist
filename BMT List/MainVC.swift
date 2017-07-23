@@ -1,6 +1,6 @@
 //
 //  MainVC.swift
-//  BMT List
+//  NS Checklist
 //
 //  Created by Vaibhav Gattani on 10/5/17.
 //  Copyright © 2017 Vaibhav Gattani. All rights reserved.
@@ -19,6 +19,7 @@ class MainVC: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var SecondButton: UIButton!
     @IBOutlet weak var ThirdButton: UIButton!
     @IBOutlet weak var FourthButton: UIButton!
+    @IBOutlet weak var titleHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var titleWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var arrowImage: UIImageView!
     
@@ -30,6 +31,12 @@ class MainVC: UIViewController, UIScrollViewDelegate {
             titleWidthConstraint.constant = 315
             
         }
+        if(UIScreen.main.bounds.height < 570)
+        {
+            titleHeightConstraint.constant = 100
+            arrowImage.isHidden = true
+        }
+
         
         self.scroller.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
         
@@ -61,8 +68,7 @@ class MainVC: UIViewController, UIScrollViewDelegate {
             SecondButton.setTitle("Book In Checklist", for: .normal)
             ThirdButton.setTitle("Information to Remember", for: .normal)
             FourthButton.setTitle("IPPT Calculator", for: .normal)
-            arrowImage.transform = arrowImage.transform.rotated(by: CGFloat.pi)
-
+            arrowImage.transform = CGAffineTransform.identity
             
         }else if Int(currentPage) == 1{
             PageTitle.text = "NS Checklist"
@@ -71,7 +77,7 @@ class MainVC: UIViewController, UIScrollViewDelegate {
             SecondButton.setTitle("Drill Commands", for: .normal)
             ThirdButton.setTitle("ILBV/Field Pack List", for: .normal)
             FourthButton.setTitle("Notes", for: .normal)
-            arrowImage.transform = arrowImage.transform.rotated(by: CGFloat.pi)
+            arrowImage.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
 
             
 

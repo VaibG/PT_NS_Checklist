@@ -1,6 +1,6 @@
 //
 //  BMT_ListTests.swift
-//  BMT ListTests
+//  NS ChecklistTests
 //
 //  Created by Vaibhav Gattani on 14/4/17.
 //  Copyright © 2017 Vaibhav Gattani. All rights reserved.

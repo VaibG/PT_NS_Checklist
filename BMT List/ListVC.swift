@@ -1,6 +1,6 @@
 //
-//  ViewController.swift
-//  BMT List
+//  ListVC.swift
+//  NS Checklist
 //
 //  Created by Vaibhav Gattani on 14/4/17.
 //  Copyright © 2017 Vaibhav Gattani. All rights reserved.
@@ -11,6 +11,9 @@ import UIKit
 class ListVC: UIViewController {
 
     @IBOutlet weak var scroller: UIScrollView!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+
     
     var mustBring = [
     "NRIC",
@@ -26,7 +29,7 @@ class ListVC: UIViewController {
     "Enough underwear for two weeks (at least 6)",
     "Clothes hangers (5 or more)",
     "Pegs (to dry clothes)",
-    "All-in-one body soap/shampoo, facial foam",
+    "All-in-one body soap/shampoo/facial foam",
     "Toothbrush and toothpaste",
     "At least $10 worth of 50c/$1 coins (for vending machines)",
     "Portable charger (around 20-30k mAH should be good enough)",
@@ -35,7 +38,7 @@ class ListVC: UIViewController {
     "Detergent (powdered) and brush",
     "Febreeze",
     "Nail Clippers",
-    "Spare pair of specs",
+    "Spare pair of black-framed specs",
     "Alarm clock"]
     
     var optionalBring = ["Large can of prickly heat powder",
@@ -60,7 +63,10 @@ class ListVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        if(UIScreen.main.bounds.width == 320) {
+        descriptionLabel.font = UIFont(name: "MarkerFelt-Wide", size: 14.0)
+        titleLabel.font = UIFont(name: "Minecraft Evenings", size: 30.0)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -118,10 +124,13 @@ class ListVC: UIViewController {
             }
             label.sizeToFit()
             if(UIScreen.main.bounds.width < 330) {
-                checkbox.frame = CGRect(x: scroller.frame.size.width - 100, y: label.frame.midY - 15, width: 30, height: 30)
+                checkbox.frame = CGRect(x: scroller.frame.size.width - 50, y: label.frame.midY - 15, width: 30, height: 30)
+            } else if (UIScreen.main.bounds.width == 375){
+              checkbox.frame = CGRect(x: scroller.frame.size.width - 50, y: label.frame.midY - 15, width: 30, height: 30)
             } else {
-              checkbox.frame = CGRect(x: scroller.frame.size.width - 80, y: label.frame.midY - 15, width: 30, height: 30)
+                checkbox.frame = CGRect(x: scroller.frame.size.width - 20, y: label.frame.midY - 15, width: 30, height: 30)
             }
+
             
             newY = newY + label.frame.size.height + scrollHeight
             contentHeight = newY + label.frame.size.height

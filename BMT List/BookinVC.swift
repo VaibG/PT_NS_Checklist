@@ -1,6 +1,6 @@
 //
 //  BookinVC.swift
-//  BMT List
+//  NS Checklist
 //
 //  Created by Vaibhav Gattani on 10/5/17.
 //  Copyright © 2017 Vaibhav Gattani. All rights reserved.
@@ -33,7 +33,7 @@ class BookinVC: UIViewController, UITableViewDelegate,UITableViewDataSource, UIT
     @IBOutlet weak var myBookinList: UITableView!
     @IBOutlet weak var input: UITextField!
     @IBOutlet weak var textFieldWidthConstraint: NSLayoutConstraint!
-    
+
     let screenSize: CGRect = UIScreen.main.bounds
     
 
@@ -62,8 +62,9 @@ class BookinVC: UIViewController, UITableViewDelegate,UITableViewDataSource, UIT
         myBookinList.rowHeight = UITableViewAutomaticDimension
         myBookinList.estimatedRowHeight = 15
         
-        if(screenSize.width<330){
+        if(screenSize.width == 320){
             textFieldWidthConstraint.constant = 200
+        
         }
         
     }
@@ -91,6 +92,9 @@ class BookinVC: UIViewController, UITableViewDelegate,UITableViewDataSource, UIT
             save(name: "Rank/Formation Badge", checked: false)
             defaults.set(true, forKey: hasLaunchedKey)
         }
+        
+        
+        
     }
 
     
@@ -256,6 +260,35 @@ class BookinVC: UIViewController, UITableViewDelegate,UITableViewDataSource, UIT
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
+    }
+    
+    @IBAction func clearAll(){
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                return
+        }
+        
+        let managedContext =
+            appDelegate.persistentContainer.viewContext
+        
+        for items in list {
+            if ((items.value(forKey: "checked")) as! Bool){
+                items.setValue(false, forKey: "checked")
+                do {
+                    let item = try managedContext.existingObject(with: items.objectID)
+                    item.setValue(false, forKey: "checked")
+                    
+                } catch let error as NSError {
+                    print("Could not uncheck. \(error), \(error.userInfo)")
+                }
+            }
+        }
+            do {
+                try managedContext.save()
+            } catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
+            myBookinList.reloadData()
     }
 
 }

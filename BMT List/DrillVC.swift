@@ -1,6 +1,6 @@
 //
 //  DrillVC.swift
-//  BMT Checklist
+//  NS Checklist
 //
 //  Created by Vaibhav Gattani on 2/7/17.
 //  Copyright © 2017 Vaibhav Gattani. All rights reserved.

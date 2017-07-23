@@ -1,6 +1,6 @@
 //
 //  NoteVC.swift
-//  BMT List
+//  NS Checklist
 //
 //  Created by Vaibhav Gattani on 27/5/17.
 //  Copyright © 2017 Vaibhav Gattani. All rights reserved.

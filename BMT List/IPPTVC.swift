@@ -1,6 +1,6 @@
 //
 //  IPPTVC.swift
-//  BMT Checklist
+//  NS Checklist
 //
 //  Created by Vaibhav Gattani on 9/7/17.
 //  Copyright © 2017 Vaibhav Gattani. All rights reserved.
@@ -21,8 +21,8 @@ class IPPTVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     @IBOutlet weak var sitUpScore: UILabel!
     @IBOutlet weak var runScore: UILabel!
     @IBOutlet weak var selectorView: UIPickerView!
-    @IBOutlet weak var IPPTScore: UILabel!
     @IBOutlet weak var closePickerView: UIView!
+    @IBOutlet weak var selectorViewHeight: NSLayoutConstraint!
     
     var pushUpData = [
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,4,6,8,9,10,11,12,13,14,15,15,16,16,16,17,17,17,18,18,18,19,19,19,20,20,20,20,21,21,21,21,22,22,22,22,23,23,23,23,24,24,24,24,25],
@@ -102,6 +102,14 @@ class IPPTVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
         currentButton = age
         selectorView.delegate = self
         selectorView.dataSource = self
+        if(UIScreen.main.bounds.height < 570)
+        {
+           selectorViewHeight.constant = 100
+            pushUps.titleLabel!.font = UIFont(name: "MarkerFelt-Thin", size: 16.0)
+            runTime.titleLabel!.font = UIFont(name: "MarkerFelt-Thin", size: 16.0)!
+        }
+
+    
     }
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -124,7 +132,6 @@ class IPPTVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
         pushUpScore.isHidden = true
         sitUpScore.isHidden = true
         runScore.isHidden = true
-        IPPTScore.isHidden = true
         rewardType.isHidden = true
         current = pushUpChoice
         currentButton = pushUps
@@ -138,12 +145,11 @@ class IPPTVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
         pushUpScore.isHidden = true
         sitUpScore.isHidden = true
         runScore.isHidden = true
-        IPPTScore.isHidden = true
         rewardType.isHidden = true
         current = runningTimes
         currentButton = runTime
         selectorView.reloadAllComponents()
-        selectorView.selectRow(39, inComponent: 0, animated: false)
+        selectorView.selectRow(44, inComponent: 0, animated: false)
         selectorView.isHidden = false
         closePickerView.isHidden = false
     }
@@ -151,7 +157,6 @@ class IPPTVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
         pushUpScore.isHidden = true
         sitUpScore.isHidden = true
         runScore.isHidden = true
-        IPPTScore.isHidden = true
         rewardType.isHidden = true
         current = ageChoice
         currentButton = age
@@ -165,7 +170,6 @@ class IPPTVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
         pushUpScore.isHidden = true
         sitUpScore.isHidden = true
         runScore.isHidden = true
-        IPPTScore.isHidden = true
         rewardType.isHidden = true
         current = sitUpChoice
         currentButton = sitUps
@@ -233,9 +237,12 @@ class IPPTVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     @IBAction func generateResults() {
-        if(pushUps.currentTitle != "Enter number of push ups" ||
-        sitUps.currentTitle != "Enter number of sit ups" ||
-        age.currentTitle != "Enter age" ||
+        
+        selectorView.isHidden = true
+        closePickerView.isHidden = true
+        if(pushUps.currentTitle != "Enter number of push ups" &&
+        sitUps.currentTitle != "Enter number of sit ups" &&
+        age.currentTitle != "Enter age" &&
         runTime.currentTitle != "Enter timing of your run") {
             let ageCat = getAgeCat()
             pushUpPoints = pushUpData[ageCat][Int(pushUps.currentTitle!)! - 1]
@@ -256,19 +263,20 @@ class IPPTVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
         sitUpScore.text = String(sitUpPoints)
         runScore.text = String(runTimePoints)
         let IPPTPoints = pushUpPoints + sitUpPoints + runTimePoints
-        IPPTScore.text = String(IPPTPoints)
         let reward = rewardType(points: IPPTPoints)
         rewardType.font = UIFont(name: "MarkerFelt-Thin", size: 26.0)
-        rewardType.sizeToFit()
         var newFrame = rewardType.frame
         newFrame.size.height = 30
         rewardType.frame = newFrame
-        rewardType.text = reward
+        var str = ""
+        str.append(String(IPPTPoints))
+        str.append(" ")
+        str.append(reward)
+        rewardType.text = str
         
         pushUpScore.isHidden = false
         sitUpScore.isHidden = false
         runScore.isHidden = false
-        IPPTScore.isHidden = false
         rewardType.isHidden = false
         } else {
             rewardType.text = "Please ensure that you have entered all the information and try again!"

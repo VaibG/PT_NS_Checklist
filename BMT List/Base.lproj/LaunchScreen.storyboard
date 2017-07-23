@@ -6,13 +6,9 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Minecraft Evenings.otf">
-            <string>MinecraftEvenings</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="4hU-gd-JcY">
@@ -29,32 +25,22 @@
                             <imageView userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background 1" translatesAutoresizingMaskIntoConstraints="NO" id="UxO-47-Doy">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NS CHECKLIST" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TuI-Ym-BPS">
-                                <rect key="frame" x="0.0" y="245.5" width="375" height="47"/>
-                                <fontDescription key="fontDescription" name="MinecraftEvenings" family="Minecraft Evenings" pointSize="45"/>
-                                <color key="textColor" red="0.058823529409999999" green="0.32549019610000002" blue="0.08235294118" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A SOLDIERS LIFELINE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yaf-9A-gjR">
-                                <rect key="frame" x="0.0" y="314" width="375" height="35.5"/>
-                                <fontDescription key="fontDescription" name="MinecraftEvenings" family="Minecraft Evenings" pointSize="34"/>
-                                <color key="textColor" red="0.56035258509999997" green="0.17074803750000001" blue="0.10070964440000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="title" translatesAutoresizingMaskIntoConstraints="NO" id="XAq-Hc-KiW">
+                                <rect key="frame" x="0.0" y="237" width="375" height="123"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="XAq-Hc-KiW" secondAttribute="height" multiplier="125:41" id="O5F-my-Llv"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="TuI-Ym-BPS" firstAttribute="centerX" secondItem="TBj-rk-F5G" secondAttribute="centerX" id="88r-LB-T2V"/>
-                            <constraint firstItem="Yaf-9A-gjR" firstAttribute="centerX" secondItem="TBj-rk-F5G" secondAttribute="centerX" id="BOl-LD-ffn"/>
-                            <constraint firstItem="TuI-Ym-BPS" firstAttribute="leading" secondItem="TBj-rk-F5G" secondAttribute="leading" id="Dnl-on-Ld8"/>
+                            <constraint firstItem="XAq-Hc-KiW" firstAttribute="centerX" secondItem="TBj-rk-F5G" secondAttribute="centerX" id="JY8-DK-Fu8"/>
                             <constraint firstItem="UxO-47-Doy" firstAttribute="leading" secondItem="TBj-rk-F5G" secondAttribute="leading" id="KyG-uq-htX"/>
-                            <constraint firstItem="Yaf-9A-gjR" firstAttribute="leading" secondItem="TBj-rk-F5G" secondAttribute="leading" id="MOj-uU-PWi"/>
-                            <constraint firstItem="Yaf-9A-gjR" firstAttribute="centerY" secondItem="TBj-rk-F5G" secondAttribute="centerY" constant="-2" id="Ndw-hW-v3j"/>
-                            <constraint firstItem="TuI-Ym-BPS" firstAttribute="centerY" secondItem="TBj-rk-F5G" secondAttribute="centerY" constant="-65" id="Rav-xG-neI"/>
-                            <constraint firstAttribute="trailing" secondItem="TuI-Ym-BPS" secondAttribute="trailing" id="Sdo-9V-9Zq"/>
+                            <constraint firstItem="XAq-Hc-KiW" firstAttribute="centerY" secondItem="TBj-rk-F5G" secondAttribute="centerY" constant="-35" id="Vk2-QJ-kkf"/>
+                            <constraint firstItem="XAq-Hc-KiW" firstAttribute="leading" secondItem="TBj-rk-F5G" secondAttribute="leading" id="hRJ-A8-ghw"/>
                             <constraint firstAttribute="trailing" secondItem="UxO-47-Doy" secondAttribute="trailing" id="jfX-Vc-RFW"/>
                             <constraint firstItem="UxO-47-Doy" firstAttribute="top" secondItem="TBj-rk-F5G" secondAttribute="top" id="r0Y-IQ-Oxv"/>
-                            <constraint firstAttribute="trailing" secondItem="Yaf-9A-gjR" secondAttribute="trailing" id="voX-Ir-M9A"/>
+                            <constraint firstAttribute="trailing" secondItem="XAq-Hc-KiW" secondAttribute="trailing" id="vAi-jp-ByC"/>
                             <constraint firstItem="oGe-Ue-lSa" firstAttribute="top" secondItem="UxO-47-Doy" secondAttribute="bottom" id="xFZ-0v-4vv"/>
                         </constraints>
                     </view>
@@ -66,5 +52,6 @@
     </scenes>
     <resources>
         <image name="background 1" width="353" height="531"/>
+        <image name="title" width="510" height="158"/>
     </resources>
 </document>
