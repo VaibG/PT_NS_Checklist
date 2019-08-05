@@ -1,4 +1,4 @@
-# NS_Checklist
+# NS Checklist
 
 ## Description
 Ever had the feeling that you left something at home and you can’t go back to get it until next week? Or wished you brought something to Tekong and it would’ve made your confinement period so much easier? Or struggle to remember the Malay commands so always get laughed at? Or see some encik walk by but don’t know his rank? Stop no more; we’re here to help you.
